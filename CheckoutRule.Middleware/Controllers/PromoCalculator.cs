@@ -18,7 +18,8 @@ namespace CheckoutRule.Middleware.Controllers
             {
                 foreach (var bundlePromoItem in promos.Where(a => a.PromoType == PromoTypes.Bundle))
                 {
-                    if (bundlePromoItem.Items.Where(a => a.ItemName == cartItem.ItemName && cartItem.Quantity >= a.Quantity).Any())
+                    if (bundlePromoItem.Items.Where(a => a.ItemName == cartItem.ItemName
+                        && cartItem.Quantity >= a.Quantity).Any())
                     {
                         int numberOfBundle = cartItem.Quantity / bundlePromoItem.Items.First(a => a.ItemName == cartItem.ItemName).Quantity;
                         int numberOfItemsWithoutDiscount = cartItem.Quantity % bundlePromoItem.Items.First(a => a.ItemName == cartItem.ItemName).Quantity;
@@ -39,7 +40,41 @@ namespace CheckoutRule.Middleware.Controllers
 
         private void ApplyComboPromo(List<Item> items, List<Promo> promos, Cart cart)
         {
-            throw new NotImplementedException();
+            foreach (var comboPromo in promos.Where(a => a.PromoType == PromoTypes.Combo))
+            {
+                int cartItemsFound = 0, iCount = 1;
+                List<char> promoAppliedItems = new List<char>();
+
+                foreach (var comboPromoItem in comboPromo.Items)
+                {
+                    if(cart.Items.Where(a => a.ItemName == comboPromoItem.ItemName
+                        && a.Quantity >= comboPromoItem.Quantity
+                        && !a.IsPromoApplied).Any())
+                    {
+                        cartItemsFound++;
+                        promoAppliedItems.Add(comboPromoItem.ItemName);
+                    }
+                }
+
+                if (cartItemsFound == comboPromo.Items.Count)
+                {
+                    foreach (var item in promoAppliedItems)
+                    {
+                        if (iCount != cartItemsFound)
+                        {
+                            cart.Items.First(a => a.ItemName == item).ReducedPrice = 0.00m;
+                            iCount++;
+                        }
+                        else
+                        {
+                            cart.Items.First(a => a.ItemName == item).ReducedPrice = comboPromo.SpecialPrice;
+                        }
+                    }
+                }
+
+                cart.TotalPriceActual = cart.TotalPricePayable;
+                cart.TotalPricePayable = cart.Items.Sum(a => a.ReducedPrice);
+            }
         }
 
         #endregion

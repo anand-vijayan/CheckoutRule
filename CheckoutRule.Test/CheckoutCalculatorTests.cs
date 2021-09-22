@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using CheckoutRule.Middleware.Controllers;
+using CheckoutRule.Middleware.Interfaces;
 using CheckoutRule.Middleware.Model;
 using NUnit.Framework;
 
@@ -85,15 +87,49 @@ namespace CheckoutRule.Test
 
         #endregion
 
+        private readonly IPromoCalculator promoCalculator;
+
+        public CheckoutCalculatorTests()
+        {
+            promoCalculator = new PromoCalculator();
+        }
+
         [SetUp]
         public void Setup()
         {
         }
 
         [Test]
-        public void Test1()
+        public void CalculateCartValue_ScenarioA()
         {
-            Assert.Pass();
+            Cart processedCart = promoCalculator.ApplyPromosInCart(
+                GetItems(),
+                GetPromos(),
+                GetCart_Scenario_A());
+
+            Assert.AreEqual(100.00m, processedCart.TotalPricePayable, "Scenario A: Total price payable should be 100.00");
+        }
+
+        [Test]
+        public void CalculateCartValue_ScenarioB()
+        {
+            Cart processedCart = promoCalculator.ApplyPromosInCart(
+                GetItems(),
+                GetPromos(),
+                GetCart_Scenario_B());
+
+            Assert.AreEqual(370.00m, processedCart.TotalPricePayable, "Scenario B: Total price payable should be 370.00");
+        }
+
+        [Test]
+        public void CalculateCartValue_ScenarioC()
+        {
+            Cart processedCart = promoCalculator.ApplyPromosInCart(
+                GetItems(),
+                GetPromos(),
+                GetCart_Scenario_C());
+
+            Assert.AreEqual(280.00m, processedCart.TotalPricePayable, "Scenario C: Total price payable should be 280.00");
         }
     }
 }

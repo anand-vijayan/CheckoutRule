@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutRule", "CheckoutRul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutRule.Middleware", "CheckoutRule.Middleware\CheckoutRule.Middleware.csproj", "{2E293648-8D60-4A13-872B-D78C14992F94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutRule.Test", "CheckoutRule.Test\CheckoutRule.Test.csproj", "{ADAFAE39-8EBA-442D-9CAC-71E568FE5B29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2E293648-8D60-4A13-872B-D78C14992F94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E293648-8D60-4A13-872B-D78C14992F94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E293648-8D60-4A13-872B-D78C14992F94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADAFAE39-8EBA-442D-9CAC-71E568FE5B29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADAFAE39-8EBA-442D-9CAC-71E568FE5B29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADAFAE39-8EBA-442D-9CAC-71E568FE5B29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADAFAE39-8EBA-442D-9CAC-71E568FE5B29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

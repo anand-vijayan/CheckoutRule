@@ -41,7 +41,7 @@ namespace CheckoutRule.Test
             },
             new Promo
             {
-                PromoType = PromoTypes.Bundle,
+                PromoType = PromoTypes.Combo,
                 Items = new List<Item>
                 {
                     new Item { ItemName = 'C', Quantity = 1 },

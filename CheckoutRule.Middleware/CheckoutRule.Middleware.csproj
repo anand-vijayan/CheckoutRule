@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CheckoutRule.Middleware\CheckoutRule.Middleware.csproj" />
+    <Folder Include="Model\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 </Project>
